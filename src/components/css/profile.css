@@ -1,0 +1,54 @@
+.my-post {
+    padding: 2px;
+    width: 95%;
+    margin: 13px;
+}
+
+.my-post div {
+    width: 85%;
+}
+
+.img-user {
+    width: 170px;
+    height: 170px;
+    margin: 6px 12px;
+    float: left;
+}
+
+.info-user {
+    margin-top: 2px;
+}
+
+.btn-sent {
+    background-color: green;
+    padding: 4px;
+    width: 75px;
+    color: white;
+    float: right;
+    margin-top: 5px;
+    margin-right: 30px;
+}
+
+.text-post {
+    display: block;
+}
+
+.other-tag {
+    text-align: center;
+    margin-top: 69px;
+}
+
+.other-tag div {
+    padding: 10px;
+}
+
+.content {
+    grid-area: c;
+    background-color: white;
+}
+
+.img-logo {
+    width: 99%;
+    height: 250px;
+    margin: 11px;
+}
