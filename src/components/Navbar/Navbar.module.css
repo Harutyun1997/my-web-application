@@ -1,3 +1,4 @@
+
 .nav {
     grid-area: n;
     background-color: burlywood;
@@ -30,6 +31,10 @@
 .nav a:active {
     color: blue;
 
+}
+
+.activeLink {
+    color: goldenrod !important;
 }
 
 .nav div {
