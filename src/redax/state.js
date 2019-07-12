@@ -21,7 +21,6 @@ let postData = [
         text: "Why you"
     },
 ];
-
 let dialogsData = [
     {
         name: 'Nik',

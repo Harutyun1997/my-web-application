@@ -3,12 +3,12 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (propers) => {
-    propers = propers.data;
+    debugger;
 
     return (
         <div>
-            <ProfileInfo data={propers.userData}/>
-            <MyPosts data={propers.postData}/>
+            <ProfileInfo data={propers.profilePage.newPostText}/>
+            <MyPosts data={propers.profilePage.posts}/>
         </div>
     )
 };

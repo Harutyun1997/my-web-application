@@ -10,16 +10,15 @@ import {Route} from 'react-router-dom';
 
 const App = (props) => {
     debugger;
-    props = props.appState;
-    let profileData = () => <Profile data={props.profilePage}/>;
-    let dialogs = () => <Dialogs data={props.messagesPage}/>
     return (
         <div className="app-wrapper">
             <Header/>
             <NavBar/>
             <div className="app-wrapper-content">
-                <Route path='/profile' component={profileData}/>
-                <Route path='/dialog' render={dialogs}/>
+                <Route path='/profile'
+                       render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
+                <Route path='/dialog'
+                       render={() => <Dialogs store={props.store} messagesPage={props.state.messagesPage}/>}/>
             </div>
             <Footer/>
         </div>

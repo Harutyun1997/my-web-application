@@ -7,14 +7,12 @@ import {addMessage} from "../../redax/state";
 
 let newMessage = React.createRef();
 
-const createMessage = () => {
+const createMessage = (propers) => {
     let message = newMessage.current.value;
-    newMessage.current.value = '';
-    addMessage(message);
 };
 
-const Dialog = (props) => {
-    props = props.data;
+const Dialog = (propers) => {
+    debugger;
 
     return (
         <div className={s.dialogs}>
@@ -22,7 +20,7 @@ const Dialog = (props) => {
                 DIALOGS
                 <ul>
                     {
-                        props.dialogsData.map((data) =>
+                        propers.messagesPage.dialogs.map((data) =>
                             <DialogItem name={data.name} id={data.id}/>
                         )}
                 </ul>
@@ -30,7 +28,7 @@ const Dialog = (props) => {
 
             <div className={s.massages}>
                 {
-                    props.messageData.map((data) =>
+                    propers.messagesPage.messages.map((data) =>
                         <Message name={data.name} text={data.message}
                                  src={data.src}/>
                     )
