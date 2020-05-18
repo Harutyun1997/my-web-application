@@ -1,14 +1,14 @@
 import React from 'react';
-import MyPosts from './MyPosts/MyPosts';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 
-const Profile = (propers) => {
+const Profile = () => {
     debugger;
 
     return (
         <div>
-            <ProfileInfo data={propers.profilePage.newPostText}/>
-            <MyPosts data={propers.profilePage.posts}/>
+            <ProfileInfoContainer/>
+            <MyPostsContainer/>
         </div>
     )
 };

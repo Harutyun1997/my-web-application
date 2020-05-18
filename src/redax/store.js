@@ -1,4 +1,6 @@
-import {renderEntireTree} from "../index";
+import profileReducer from "./profile-reducer";
+import messagesReducer from "./messages-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 let userData = {
     name: 'Arsen',
@@ -78,49 +80,52 @@ let messageData = [
     }
 ];
 
-let state = {
-    profilePage: {
-        userData: userData,
-        postData: postData
+let store = {
+    _state: {
+        profilePage: {
+            postData: postData,
+            userData: userData,
+            newPostText: ''
+        },
+        messagesPage: {
+            dialogsData: dialogsData,
+            messageData: messageData,
+            userData: userData,
+            newMessageText: ''
+        },
+        sidebar: {}
     },
-    messagesPage: {
-        dialogsData: dialogsData,
-        messageData: messageData
+    _callSubscriber() {
+        console.log('State changed');
+    },
+    getState() {
+        return this._state;
+    },
+    localStorageData() {
+        debugger;
+        let data = JSON.parse(localStorage.getItem('localState'));
+        if (data) {
+            this._state = data;
+        }
+
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        localStorage.clear();
+        localStorage.setItem('localState', JSON.stringify(this._state));
+
+        this._callSubscriber(this._state);
     }
 };
-export let addPost = (postMessage) => {
-    debugger;
-    let newPost = {
-        name: userData.name,
-        text: postMessage
-    };
-    localStorage.clear();
-    state.profilePage.postData.push(newPost);
-    localStorage.setItem('data', JSON.stringify(state));
-    renderEntireTree();
-};
 
-export let localStorageData = () => {
-    debugger;
-    let data = JSON.parse(localStorage.getItem('data'));
-    if (data) {
-        state = data;
-    }
 
-};
+store.localStorageData();
 
-export let addMessage = (message) => {
-    let newMessage = {
-        name: userData.name,
-        message: message,
-        src: userData.src
-    };
-    localStorage.clear();
-    state.messagesPage.messageData.push(newMessage);
-    localStorage.setItem('data', JSON.stringify(state));
-    renderEntireTree();
-};
-
-localStorageData();
-
-export default state;
+export default store;

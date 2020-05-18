@@ -2,13 +2,13 @@ import React from 'react';
 import s from '../MyPosts/MyPosts.module.css';
 
 
-const Post = (propers) => {
-    propers = propers.data;
+const Post = (props) => {
+    debugger;
 
     return (
         <div className={s.other_tag}>
             {
-                propers.map((user) =>
+                props.postData.map((user) =>
                     <div className={s.post}>
                         <img src="https://powerviewltd.com/wp-content/uploads/2018/03/profile-img-1.jpg"
                              alt="User" className={s.img_post}/>

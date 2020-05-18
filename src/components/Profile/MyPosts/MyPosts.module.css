@@ -34,12 +34,6 @@
 }
 
 .btn_sent {
-    background-color: green;
-    padding: 4px;
     width: 75px;
-    color: white;
-    margin-top: 5px;
-    margin-right: 30px;
-    position: absolute;
-    left: 85%;
+    margin-bottom: 32px;
 }

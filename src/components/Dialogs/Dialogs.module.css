@@ -1,6 +1,6 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 3fr 9fr;
+    grid-template-columns: 2fr 10fr;
 }
 
 .dialogs_items {
@@ -47,7 +47,7 @@
     width: 200px;
 }
 
-.massages .massage span {
+.massages .m assage span {
     position: relative;
     top: 54px;
     right: 54px;

@@ -13,6 +13,7 @@
 
 .nav :last-child {
     margin-top: 40px;
+    list-style-type: none;
 }
 
 .nav a {

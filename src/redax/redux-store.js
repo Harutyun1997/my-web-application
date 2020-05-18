@@ -1,14 +1,26 @@
-import {combineReducers, createStore} from 'redux';
-import profileReducer from './profile-reducer';
-import dialogsReducer from './dialogs-reducer';
-import sidebarReducer from './sidebar-reducer'
+// import {combineReducers, createStore} from 'redux';
+// import prifileReducer from './profile-reducer';
+// import messagesReducer from "./messages-reducer";
+//
+// let reducers = combineReducers({
+//     profilePage: prifileReducer,
+//     messagesPage: messagesReducer,
+// });
+// let store = createStore(reducers);
+//
+// export default store;
+import {combineReducers, createStore} from "redux";
+import profileReducer from "./profile-reducer";
+import messagesReducer from "./messages-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 let reducers = combineReducers({
     profilePage: profileReducer,
-    messagesPage: dialogsReducer,
+    messagesPage: messagesReducer,
     sidebar: sidebarReducer
-
 });
 let store = createStore(reducers);
-
+window.store = store;
+debugger;
+console.log(store);
 export default store;
