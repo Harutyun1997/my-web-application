@@ -23,14 +23,11 @@
 // export default profileReducter;
 
 
+import {ProfileAPI} from "../api/api";
+
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-let userData = {
-    name: 'Arsen',
-    age: 45,
-    city: 'Armenia',
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR'
-};
+const SET_USER_PROFILE = "SET-USER-PROFILE";
+const SET_STATUS = "SET_STATUS";
 
 let postData = [
     {
@@ -49,38 +46,65 @@ let postData = [
 
 let initialState = {
     postData: postData,
-    userData: userData,
-    newPostText: ''
+    userData: [],
 };
 
 const profileReducer = (state = initialState, action) => {
-    debugger;
+    let stateClone;
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT : {
-            let state2 = Object.create(state);
-            state2.newPostText = action.newText;
-            return state2;
-        }
+
         case ADD_POST: {
             let newPost = {
-                name: state.userData.name,
-                text: state.newPostText
+                name: JSON.parse(localStorage.getItem('userData')).name,
+                text: action.message
             };
-            let state2 = Object.create(state);
+            //let state2 = Object.create(state);
+            stateClone = {...state, postData: [...state.postData, newPost]};
+            return stateClone;
+        }
 
-            state2.newPostText = '';
-            state2.postData.push(newPost);
-            return state2;
+        case SET_USER_PROFILE: {
+            stateClone = {...state, userData: action.user};
+            return stateClone;
+        }
+        case SET_STATUS: {
+            stateClone = {...state, userData: action.user};
+            return stateClone;
         }
         default :
             return state;
     }
 };
 
-export const addPostActionCreator = () =>
-    ({type: ADD_POST});
+export const addPostActionCreator = (message) => ({type: ADD_POST, message});
 
-export const updatePostActionCreator = (text) =>
-    ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const setUserProfile = (user) =>
+    ({type: SET_USER_PROFILE, user});
+
+export const setStatus = (user) =>
+    ({type: SET_STATUS, user: user});
+
+export const getUserThunkCreator = (userID) => {
+    return (dispatch) => {
+        //  dispatch(toggleIsFetching(true));
+        ProfileAPI.getUser(userID).then(data => {
+            dispatch(setUserProfile(data));
+            // dispatch(toggleIsFetching(false));
+        }).catch(err => console.log(err));
+
+    }
+};
+
+export const updateStatus = (status, userData) => {
+    return (dispatch) => {
+        //  dispatch(toggleIsFetching(true));
+        userData['status'] = status;
+        ProfileAPI.updateStatus(userData.id, userData).then(user => {
+            dispatch(setUserProfile(user));
+            // dispatch(toggleIsFetching(false));
+        }).catch(err => console.log(err));
+
+    }
+};
 
 export default profileReducer;

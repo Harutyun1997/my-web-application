@@ -1,12 +1,5 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 
-let userData = {
-    name: 'Arsen',
-    age: 45,
-    city: 'Armenia',
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR'
-};
 let dialogsData = [
     {
         name: 'Nik',
@@ -33,6 +26,7 @@ let dialogsData = [
         id: 6,
     }
 ];
+
 let messageData = [
     {
         name: 'Mat',
@@ -63,31 +57,25 @@ let messageData = [
 
     }
 ];
+
 let initialState = {
     dialogsData: dialogsData,
     messageData: messageData,
-    userData: userData,
-
-}
+    userData: [],
+};
 
 const messagesReducer = (state = initialState, action) => {
-    debugger;
-    let stateClone = {};
+    let stateClone;
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY: {
-            stateClone = Object.create(state);
-            stateClone.newMessageText = action.newText;
-            return stateClone;
-        }
+
         case ADD_MESSAGE : {
+            let userData = JSON.parse(localStorage.getItem('userData'));
             let newMessage = {
-                name: state.userData.name,
-                message: state.newMessageText,
-                src: state.userData.src
+                name: userData.name,
+                message: action.message,
+                src: userData.src
             };
-            stateClone = Object.create(state);
-            stateClone.newMessageText = '';
-            stateClone.messageData.push(newMessage);
+            stateClone = {...state, messageData: [...state.messageData, newMessage]};
             return stateClone;
         }
         default:
@@ -95,11 +83,7 @@ const messagesReducer = (state = initialState, action) => {
     }
 };
 
-
-export const createMessageActionCreator = () =>
-    ({type: ADD_MESSAGE});
-
-export const updateMessageActionCreator = (text) =>
-    ({type: UPDATE_NEW_MESSAGE_BODY, newText: text});
+export const createMessageActionCreator = (message) =>
+    ({type: ADD_MESSAGE, message: message});
 
 export default messagesReducer;

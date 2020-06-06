@@ -1,6 +1,6 @@
 import profileReducer from "./profile-reducer";
 import messagesReducer from "./messages-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import sidebarReducer from "./users-reducer";
 
 let userData = {
     name: 'Arsen',
@@ -102,7 +102,6 @@ let store = {
         return this._state;
     },
     localStorageData() {
-        debugger;
         let data = JSON.parse(localStorage.getItem('localState'));
         if (data) {
             this._state = data;

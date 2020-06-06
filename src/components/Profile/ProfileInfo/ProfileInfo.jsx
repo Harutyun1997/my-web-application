@@ -1,14 +1,12 @@
 import React from 'react';
 import s from '../Profile.module.css';
+import ProfileStatus from '../ProfileStatus';
+import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatusWithHooks from "../ProfileStatusWithHooks";
 
-const ProfileInfo = (propers) => {
-    propers = propers.data;
-    if (!( propers.name && propers.age && propers.city)) {
-        propers = {
-            name: 'Guest',
-            age: '',
-            city: '',
-        }
+const ProfileInfo = (props) => {
+    if (!( props.name && props.age && props.location.city)) {
+        return <Preloader/>
     }
     return (
         <div>
@@ -18,14 +16,14 @@ const ProfileInfo = (propers) => {
                     className={s.img_logo} alt=""/>
             </div>
             <div>
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2hJQbREo0WcWQRR0ml95B4zsK-vtQQsiSpu7cZ_f5ay9R0omECg"
-                    className={s.img_user} alt=""/>
+                <img src={props.src}
+                     className={s.img_user} alt=""/>
                 <div className={s.info_user}>
-                    <h2>{propers.name}</h2>
-                    <p>Age: {propers.age}</p>
-                    <p>City: {propers.city}</p>
-                    <p>Education: BSU' 25</p>
+                    <h2>{props.name}</h2>
+                    <p>Age: {props.age}</p>
+                    <p>City: {props.location.city}</p>
+                    <ProfileStatusWithHooks status={props.statusAc} authMe={props.authMe}
+                                            updateStatus={props.updateStatus}/>
                     <p>Web Site: https://it-kamasutra.com</p>
                 </div>
             </div>

@@ -1,0 +1,231 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "id": 1,
+      "name": "Aram",
+      "email": "grigoryan.harutyun.a@gmail.com",
+      "password": "1234",
+      "age": 45,
+      "location": {
+        "country": "Armenia",
+        "city": "Yerevan"
+      },
+      "status": "I am very tired i want to sle  ep",
+      "src": "https://i.pinimg.com/564x/c3/12/36/c3123650da72ec2c60f7568d33c65ce5.jpg",
+      "followed": {
+        "1": true,
+        "2": false,
+        "3": true,
+        "4": true,
+        "5": false,
+        "6": true,
+        "7": true,
+        "8": false,
+        "9": true,
+        "10": true,
+        "14": true,
+        "15": true
+      },
+      "isAuth": true,
+      "error": false
+    },
+    {
+      "id": 2,
+      "name": "Nikita",
+      "email": "harut.grigoryan@mail.ru",
+      "password": "1234",
+      "age": 33,
+      "location": {
+        "country": "Russia",
+        "city": "Moscow"
+      },
+      "status": "HArut",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": true,
+      "isAuth": true
+    },
+    {
+      "id": 4,
+      "name": "Ala",
+      "email": "harut.grigoryanH@mail.ru",
+      "password": "1234",
+      "age": 23,
+      "location": {
+        "country": "Russia",
+        "city": "Saratov"
+      },
+      "status": "I am very tired i want to sleep",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": false,
+      "isAuth": true
+    },
+    {
+      "id": 5,
+      "name": "Meri",
+      "age": 23,
+      "email": "harut.grigoryan1997@mail.ru",
+      "password": "1234",
+      "location": {
+        "country": "Russia",
+        "city": "Saratov"
+      },
+      "status": "I am very tired i want to sleep",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": false,
+      "isAuth": true
+    },
+    {
+      "id": 6,
+      "name": "Mono",
+      "age": 23,
+      "email": "harut.grigoryan41@mail.ru",
+      "password": "1234",
+      "location": {
+        "country": "Russia",
+        "city": "Saratov"
+      },
+      "status": "I am very tired i want to sleep",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": false,
+      "isAuth": true
+    },
+    {
+      "id": 7,
+      "name": "Asa",
+      "age": 23,
+      "location": {
+        "country": "Russia",
+        "city": "Saratov"
+      },
+      "status": "I am very tired i want to sleep",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": false,
+      "isAuth": true
+    },
+    {
+      "id": 8,
+      "name": "Armine",
+      "age": 23,
+      "email": "harut.grigoryan1a@mail.ru",
+      "password": "1234",
+      "location": {
+        "country": "Russia",
+        "city": "Saratov"
+      },
+      "status": "I am very tired i want to sleep",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": false,
+      "isAuth": true
+    },
+    {
+      "id": 9,
+      "name": "Harut",
+      "age": 23,
+      "email": "harut.grigoryan22@mail.ru",
+      "password": "1234",
+      "location": {
+        "country": "Russia",
+        "city": "Saratov"
+      },
+      "status": "I am very tired i want to sleep",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": false,
+      "isAuth": true
+    },
+    {
+      "id": 10,
+      "name": "Liza",
+      "age": 20,
+      "email": "harut.liza@mail.ru",
+      "password": "1234",
+      "location": {
+        "country": "Russia",
+        "city": "Saratov"
+      },
+      "status": "I am very tired i want to sleep",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": {
+        "1": true,
+        "2": false,
+        "3": true,
+        "4": true,
+        "5": false,
+        "8": true,
+        "9": true
+      },
+      "isAuth": true
+    },
+    {
+      "firstName": "Арутюн",
+      "lastName": "Григорян",
+      "country": "Россия",
+      "city": "Московская обл.",
+      "email": "fd",
+      "password": "gffgfg",
+      "age": "22",
+      "name": "Арутюн Григорян",
+      "location": {
+        "country": "Россия",
+        "city": "Московская обл."
+      },
+      "id": 14
+    },
+    {
+      "firstName": "Арутюн",
+      "lastName": "Григорян",
+      "country": "Россия",
+      "city": "Московская обл.",
+      "age": "22",
+      "email": "Arsen",
+      "password": "1234",
+      "sendInfoMail": true,
+      "name": "Арутюн Григорян",
+      "location": {
+        "country": "Россия",
+        "city": "Московская обл."
+      },
+      "status": "Tell us about yourself",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
+      "followed": {
+        "5": true,
+        "6": true,
+        "7": true,
+        "9": true,
+        "14": true
+      },
+      "id": 15
+    }
+  ],
+  "auth": {
+    "id": null,
+    "name": null,
+    "email": null,
+    "password": null,
+    "age": null,
+    "location": {
+      "country": null,
+      "city": null
+    },
+    "status": null,
+    "src": "",
+    "followed": null,
+    "isAuth": false
+  }
+}

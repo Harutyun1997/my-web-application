@@ -3,7 +3,6 @@ import s from '../MyPosts/MyPosts.module.css';
 
 
 const Post = (props) => {
-    debugger;
 
     return (
         <div className={s.other_tag}>

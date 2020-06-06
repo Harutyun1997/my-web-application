@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import {createMessageActionCreator, updateMessageActionCreator} from "../../redax/messages-reducer";
-import Dialog from "./Dialogs";
+import {createMessageActionCreator} from "../../redax/messages-reducer";
 import {connect} from "react-redux";
+import Dialog from "./Dialogs";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 // const DialogsContainer = (props) => {
 //     const addMessage = () => {
@@ -20,21 +22,19 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
     return {
         dialogsData: state.messagesPage.dialogsData,
-        messageData: state.messagesPage.messageData,
-        newMessageText: state.messagesPage.newMessageText
+        messageData: state.messagesPage.messageData
     }
 };
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateTextContent: (message) => {
-            dispatch(updateMessageActionCreator(message));
-        },
-        addMessage: () => {
-            dispatch(createMessageActionCreator());
+        addMessage: (message) => {
+            dispatch(createMessageActionCreator(message));
         },
     }
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialog);
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialog);
