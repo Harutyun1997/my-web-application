@@ -1,0 +1,9 @@
+
+.loader {
+    position: fixed;
+    top: 50%;
+    width: 51%;
+    height: 100%;
+    background: #222222;
+    z-index: 1000;
+}

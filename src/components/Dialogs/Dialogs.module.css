@@ -1,0 +1,76 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs_items {
+    padding: 10px;
+    border-right: 1px solid #4d85ba;
+    border-radius: 2px;
+}
+
+.dialogs_items .active {
+    color: gold;
+}
+
+.dialog {
+    padding: 10px;
+}
+
+.massages {
+    padding: 10px;
+    margin: 10px;
+}
+
+.massage {
+    padding: 10px;
+    clear: both;
+}
+
+.massages .massage img {
+    width: 75px;
+    height: 75px;
+    margin: -23px 3px 10px 8px;
+    float: left;
+    border: 1px white;
+    border-radius: 50%;
+}
+
+.massages .massage p {
+    position: relative;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 11px;
+    padding: 9px;
+    top: 15px;
+    left: 25px;
+    width: 200px;
+}
+
+.massages .m assage span {
+    position: relative;
+    top: 54px;
+    right: 54px;
+}
+
+.massages button {
+    width: 65px;
+    color: white;
+    background-color: green;
+    padding: 6px;
+    font-size: 16px;
+    margin: 0 32px;
+    position: relative;
+    top: -15px;
+}
+
+.massage div {
+    width: 130px;
+    height: 115px;
+    display: inline-block;
+}
+
+.content_sent_message {
+    clear: both;
+}
+

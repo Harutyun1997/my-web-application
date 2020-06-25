@@ -1,0 +1,43 @@
+.post {
+    clear: both;
+}
+
+.post div {
+    float: left;
+}
+
+.my_post {
+    padding: 2px;
+    width: 95%;
+    margin: 13px;
+}
+
+.my_post div {
+    width: 85%;
+}
+
+.post div span {
+    color: blue;
+    font-size: 20px;
+    display: block;
+    margin: 4px 4px;
+    text-align: left;
+}
+
+.img_post {
+    width: 100px;
+    height: 100px;
+    margin: 11px 3px 10px 7px;
+    float: left;
+    border: 1px white;
+    border-radius: 50%;
+}
+
+.btn_sent {
+    width: 75px;
+    margin-bottom: 32px;
+}
+
+.my_post_container {
+    clear: both
+}

@@ -1,0 +1,13 @@
+.users {
+    font-size: 14px;
+}
+
+.users img {
+    width: 50px;
+}
+
+.selectedPage {
+    font-size: 16px;
+    font-weight: 800;
+    color: yellow;
+}

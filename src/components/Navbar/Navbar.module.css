@@ -1,0 +1,44 @@
+
+.nav {
+    grid-area: n;
+    background-color: burlywood;
+    margin-top: 10px;
+    text-align: center;
+    display: block !important;
+}
+
+.nav :first-child {
+    margin-top: 25px;
+}
+
+.nav :last-child {
+    margin-top: 40px;
+    list-style-type: none;
+}
+
+.nav a {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: red;
+    text-decoration: none;
+
+}
+
+.nav a:active {
+    color: blue;
+
+}
+
+.activeLink {
+    color: goldenrod !important;
+}
+
+.nav div {
+    margin-bottom: 20px;
+
+}
