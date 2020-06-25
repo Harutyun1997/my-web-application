@@ -37,3 +37,7 @@
     width: 75px;
     margin-bottom: 32px;
 }
+
+.my_post_container {
+    clear: both
+}

@@ -3,12 +3,12 @@ import s from '../MyPosts/MyPosts.module.css';
 
 
 const Post = (props) => {
-
     return (
         <div className={s.other_tag}>
             {
-                props.postData.map((user) =>
-                    <div className={s.post}>
+
+                [...props.postData].reverse().map((user) =>
+                    <div key={user.id} className={s.post}>
                         <img src="https://powerviewltd.com/wp-content/uploads/2018/03/profile-img-1.jpg"
                              alt="User" className={s.img_post}/>
                         <div>

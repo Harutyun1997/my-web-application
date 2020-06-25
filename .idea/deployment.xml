@@ -15,6 +15,9 @@
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
             <mapping local="" />
           </mappings>
+          <excludedPaths>
+            <excludedPath path="/home/admin/web/test.freightdelivery.ru/db.json" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

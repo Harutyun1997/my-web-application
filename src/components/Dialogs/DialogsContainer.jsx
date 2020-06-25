@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import {createMessageActionCreator} from "../../redax/messages-reducer";
+import {createMessageActionCreator} from "../../redax/messages-reducer.ts";
 import {connect} from "react-redux";
 import Dialog from "./Dialogs";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";

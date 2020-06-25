@@ -5,14 +5,14 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {AddMessageForm} from '../common/FormsControls/FormsAddMessage';
 
-const Dialog = (props) => {
+const Dialog = React.memo(props => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>
                 <ul>
                     {
                         props.dialogsData.map(data =>
-                            <DialogItem name={data.name} id={data.id}/>
+                            <DialogItem key={data.id} name={data.name} id={data.id}/>
                         )
                     }
                 </ul>
@@ -20,7 +20,7 @@ const Dialog = (props) => {
             <div className={s.massages}>
                 {
                     props.messageData.map((data) =>
-                        <Message name={data.name} text={data.message}
+                        <Message key={data.id} id={data.id} name={data.name} text={data.message}
                                  src={data.src}/>
                     )
                 }
@@ -30,6 +30,7 @@ const Dialog = (props) => {
             </div>
 
         </div>);
+});
 
-};
+
 export default Dialog;

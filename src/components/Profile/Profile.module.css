@@ -31,3 +31,21 @@
     height: 250px;
     margin: 11px;
 }
+
+.fileContainer p {
+    display: none;
+
+}
+
+.fileContainer img {
+    display: none;
+}
+
+.fileContainer div, .fileContainer button {
+    padding: 0;
+    margin: 0;
+}
+
+.fileContainer {
+    float: left;
+}

@@ -5,7 +5,7 @@ const Message = (props) => {
     return (
         <div className={s.massage}>
             <div>
-                <img src={props.src} alt="User"/>
+                <img src={props.src ? props.src : ''} alt="User"/>
                 <span>{props.name}</span>
             </div>
             <p>{props.text}</p>

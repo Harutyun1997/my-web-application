@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {NavLink} from "react-router-dom";
-import {Input} from "../common/FormsControls/FormsControls";
+import {createField, Input} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 
 
@@ -33,107 +33,43 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SigUpForm = (props) => {
+const SigUpForm = ({handleSubmit}) => {
     const classes = useStyles();
     const maxLength = maxLengthCreator(30);
 
     return (
-        <form onSubmit={props.handleSubmit} className={classes.form} noValidate>
+        <form onSubmit={handleSubmit} className={classes.form} noValidate>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                    <Field
-                        name="firstName"
-                        placeholder="First Name"
-                        autoFocus
-                        component={Input}
-                        className={'col-12 p-2'}
-                        validate={[required, maxLength]}
-                    />
+                    {createField('First Name', 'firstName', [required, maxLength], Input)}
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <Field
-                        variant="outlined"
-                        fullWidth
-                        name="lastName"
-                        placeholder="lastName"
-                        component={Input}
-                        className={'col-12 p-2'}
-                        validate={[required, maxLength]}
-                    />
+                    {createField('lastName', 'lastName', [required, maxLength], Input)}
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                    <Field
-                        variant="outlined"
-                        fullWidth
-                        name="country"
-                        placeholder="Country"
-                        component={Input}
-                        className={'col-12 p-2'}
-                        validate={[required, maxLength]}
-                    />
+                    {createField('Country', 'country', [required, maxLength], Input)}
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                    <Field
-                        variant="outlined"
-                        fullWidth
-                        name="city"
-                        placeholder="City"
-                        component={Input}
-                        className={'col-12 p-2'}
-                        validate={[required, maxLength]}
-                    />
+                    {createField('City', 'city', [required, maxLength], Input)}
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                    <Field
-                        variant="outlined"
-                        fullWidth
-                        name="age"
-                        placeholder="Age"
-                        component={Input}
-                        type={'number'}
-                        className={'col-12 p-2'}
-                        validate={[required]}
-                    />
+                    {createField('Age', 'age', [required], Input, 'number')}
                 </Grid>
                 <Grid item xs={12}>
-                    <Field
-                        fullWidth
-                        placeholder="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        component={Input}
-                        className={'col-12 p-2'}
-                        validate={[required, maxLength]}
-                    />
+                    {createField('Email Address', 'email', [required, maxLength], Input, 'email')}
                 </Grid>
                 <Grid item xs={12}>
-                    <Field
-                        name="password"
-                        placeholder="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        component={Input}
-                        className={'col-12 p-2'}
-                        validate={[required, maxLength]}
-                    />
+                    {createField('Password', 'password', [required, maxLength], Input, 'password')}
+
                 </Grid>
                 <Grid item xs={12}>
                     <label for="sendInfoMail">I want to receive inspiration, marketing promotions and updates via
                         email.</label>
-                    <Field
-                        component={"input"} type={'checkbox'}
-                        id={'sendInfoMail'} name={'sendInfoMail'}
-                    />
+                    <Field component={"input"} type={'checkbox'} id={'sendInfoMail'} name={'sendInfoMail'}/>
                 </Grid>
             </Grid>
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}>
-                Sign Up
-            </Button>
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                Sign Up</Button>
             <Grid container justify="flex-end">
                 <Grid item>
                     <NavLink to="/login" variant="body2">
@@ -164,11 +100,8 @@ export default function SignUp(props) {
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
-                </Typography>
+                <Typography component="h1" variant="h5">Sign up</Typography>
                 <SigUpReduxForm onSubmit={sinUp}/>
-
             </div>
         </Container>
     );

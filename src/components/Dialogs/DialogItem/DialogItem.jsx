@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom';
 
 
 const DialogItem = (props) => {
-
     return (
         <li>
             <div className={s.dialog + ' ' + s.active}>

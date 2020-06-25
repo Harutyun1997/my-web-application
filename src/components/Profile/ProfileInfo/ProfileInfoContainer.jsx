@@ -2,14 +2,13 @@
 import React from 'react';
 import {connect} from "react-redux";
 import ProfileInfo from "./ProfileInfo";
-import {getUserThunkCreator, updateStatus} from "../../../redax/profile-reducer";
+import {getUserThunkCreator, saveData, updatePhoto, updateStatus} from "../../../redax/profile-reducer.ts";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 class ProfileInfoContainer extends React.Component {
     componentDidMount() {
-        // this.props.toggleIsFetching(true);
         let userID = this.props.match.params.userId;
         if (!userID) {
             userID = this.props.user.id;
@@ -20,16 +19,15 @@ class ProfileInfoContainer extends React.Component {
         this.props.getUser(userID);
     }
 
-
     render() {
         return (
             <ProfileInfo {...this.props.userPage} authMe={this.props.user} updateStatus={this.props.updateStatus}
-                         statusAc={this.props.status}/>
+                         statusAc={this.props.status} updatePhoto={this.props.updatePhoto}
+                         saveData={this.props.saveData}/>
         )
 
     }
 }
-
 
 let mapStateToProps = (state) => {
     return {
@@ -39,5 +37,10 @@ let mapStateToProps = (state) => {
     }
 };
 export default compose(
-    connect(mapStateToProps, {getUser: getUserThunkCreator, updateStatus}), withRouter, withAuthRedirect)
+    connect(mapStateToProps, {
+        getUser: getUserThunkCreator,
+        updateStatus,
+        updatePhoto,
+        saveData
+    }), withRouter, withAuthRedirect)
 (ProfileInfoContainer);

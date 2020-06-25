@@ -4,7 +4,7 @@ import {Field, reduxForm, reset} from "redux-form";
 import {Textarea} from "./FormsControls";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import s from './FormsControls.module.css';
-
+import cn from 'classnames'
 const maxLength = maxLengthCreator(10);
 
 const afterSubmit = (result, dispatch) =>
@@ -16,7 +16,7 @@ const PostAddForm = (props) => {
                className=' col-9'
                rows="4"
                cols="130"/>
-        <button className={`${s.btn_sent + ' btn btn-success col-2 col-lg-1 ml-2'}`}>Sent</button>
+        <button className={cn(s.btn_sent, ' btn btn-success col-2 col-lg-1 ml-2')}>Sent</button>
     </form>;
 
 };
@@ -24,7 +24,7 @@ const FormPost = reduxForm({form: 'myPostMessage', onSubmitSuccess: afterSubmit}
 
 export const AddMessageForm = (props) => {
     const createPost = (data) => {
-        props.addMessage(data.message);
+        props.addMessage(data.message, props.myName);
     };
     return (
         <div>

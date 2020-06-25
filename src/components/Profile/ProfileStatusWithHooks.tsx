@@ -1,17 +1,19 @@
 import React, {useState, useEffect} from 'react';
+import {userDataType} from "../../type/alll-type";
 
-const ProfileStatusWithHooks = (props) => {
 
-    debugger;
-    let state = {
-        editMode: false,
-        status: props.status
-    };
-    let [editMode, setEditMode] = useState(false);
+type PropsType = {
+    status: string
+    updateStatus: (status: string, authMe: object) => void
+    authMe: userDataType
+}
+
+const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
+
+    let [editMode, setEditMode] = useState<boolean>(false);
     let [status, setStatus] = useState(props.status);
 
     useEffect(() => {
-        debugger;
         setStatus(props.status);
     }, [props.status]);
 
@@ -27,7 +29,6 @@ const ProfileStatusWithHooks = (props) => {
     // }
 
     const activateEditMode = () => {
-        console.log('activateEditMode');
         setEditMode(true);
         // console.log(this.state.editMode);
         // this.setState({
@@ -37,16 +38,13 @@ const ProfileStatusWithHooks = (props) => {
         // this.state.editMode = true;
         // this.forceUpdate();
     };
-    const onStatusChange = (e) => {
-        console.log('onStatusChange');
+    const onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value);
         // this.setState({status: e.currentTarget.value});
     };
 
     const deactivateEditMode = () => {
-        console.log('deactivateEditMode');
         setEditMode(false);
-
         props.updateStatus(status, props.authMe);
     };
 

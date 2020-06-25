@@ -1,48 +1,35 @@
-const http = require('http');
-const url = require('url');
-const server = new http.Server;
-const fs = require('fs');
-server.listen(8010, '127.0.0.1');
+var http = require('http'),
+    express = require('express'),
+    Busboy = require('busboy'),
+    path = require('path'),
+    fs = require('fs');
 
-server.on('request', function (req, res) {
-    let parseUrl = url.parse(req.url, true);
+var app = express();
 
-    console.log(getPageNameByPath(parseUrl.pathname));
-    if ('error' !== getPageNameByPath(parseUrl.pathname)) {
-        console.log('MTAV');
-        let param = JSON.parse(JSON.stringify(parseUrl.query));
-        console.log(param.id);
-        fs.readFile(getPageNameByPath(parseUrl.pathname) + '.json', function (err, data) {
-            if (err) throw new Error(err);
+app.get('/', function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
+})
 
-            res.writeHead(200, {"Content-Type": "application/json"});
-            data = JSON.parse(data);
-            console.log(data['users'][param.id]);
-            let result = JSON.stringify(data['users'][param.id]);
-            res.end(result);
+app.post('/fileupload', function (req, res) {
 
-            //res.end(result);
+    var busboy = new Busboy({headers: req.headers});
+    busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+        var saveTo = path.join(__dirname, 'assets/usersImage/' + filename);
+        file.pipe(fs.createWriteStream(saveTo));
+    });
 
-        });
-    } else {
-        res.end('NET Danix');
-    }
+    busboy.on('finish', function () {
+        console.log("FINISH");
+        res.writeHead(200, {'Connection': 'close'});
+        res.end("That's all folks!");
+    });
+
+    return req.pipe(busboy);
 });
 
-
-function getPageNameByPath(path) {
-    switch (path) {
-        case '/':
-        case '/users':
-            return 'users';
-
-        case '/profile':
-            return 'profile';
-
-        case '/error':
-            return 'error';
-
-        default:
-            return 'error';
-    }
-}
+app.listen(8080);

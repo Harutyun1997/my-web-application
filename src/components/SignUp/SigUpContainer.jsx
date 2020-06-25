@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import SignUp from "./SigUp";
-import {sigUpAccount} from "../../redax/auth-reducer";
+import {sigUpAccount} from "../../redax/auth-reducer.ts";
 
 class SignUpContainer extends React.Component {
     // componentDidMount() {

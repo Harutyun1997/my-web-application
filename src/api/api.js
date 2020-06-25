@@ -34,6 +34,26 @@ export const ProfileAPI = {
         return instance.put(`users/${userDataId}`, {
             ...userData
         }).then(resolve => resolve.data);
+    },
+
+    savePhoto(photoFile) {
+        let formData = new FormData();
+        formData.append('image', photoFile);
+
+
+        return axios({
+            method: 'post',
+            url: 'http://localhost:8080/fileupload',
+            data: formData,
+            headers: {'Content-Type': 'multipart/form-data'}
+        }).then(function (response) {
+            //handle success
+            console.log(response);
+        })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            });
     }
 };
 

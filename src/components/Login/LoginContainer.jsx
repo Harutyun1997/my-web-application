@@ -3,7 +3,7 @@ import Login from './Login';
 import {
     getAuthUserData, sigInAccount, signOutAccount, updateEmailText,
     updatePasswordText
-} from "../../redax/auth-reducer";
+} from "../../redax/auth-reducer.ts";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 

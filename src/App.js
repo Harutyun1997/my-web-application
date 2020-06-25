@@ -1,30 +1,33 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {BrowserRouter as Router, Switch, Route, Link, withRouter} from "react-router-dom";
+import {Route, Link, withRouter, Switch, Redirect} from "react-router-dom";
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import NavBar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
 import Footer from './components/Footer/Footer';
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import SignUpContainer from "./components/SignUp/SigUpContainer";
-import {getAuthUserData} from "./redax/auth-reducer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
-import {initializeAPP} from "./redax/app-reducer";
+import {initializeAPP} from "./redax/app-reducer.ts";
 import Preloader from "./components/common/Preloader/Preloader";
 
+import {BrowserRouter} from 'react-router-dom';
+import store from "./redax/redux-store.ts";
+import Profile from './components/Profile/Profile';
+import {SuspenseLazyLoading} from "./hoc/withSuspenseLazyLoading";
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer.tsx'));
 
 //проверка если есть зайди акаут еслт нет строница  логина
 class App extends React.Component {
 
     componentDidMount() {
         this.props.initializeAPP();
+        window.addEventListener('unhandledrejection', (promiseRejection) => this.catchAllUnnphandledErrors(promiseRejection));
     }
-
 
     render() {
         if (!this.props.initialized) {
@@ -32,49 +35,45 @@ class App extends React.Component {
         }
 
         return (
-
-            !this.props.isAuth ?
-                <div className="App">
-                    <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-                        <div className="container">
-                            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                                <ul className="navbar-nav ml-auto">
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to={"/login"}>Login</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                    <div className="auth-wrapper">
-                        <div className="auth-inner">
-                            <Switch>
-                                <Route exact path='/' component={LoginContainer}/>
-                                <Route path="/login" render={() => <LoginContainer/>}/>
-                                <Route path="/sign-up" render={() => <SignUpContainer/>}/>
-                                <Route path='/profile/:userId?' render={() => <Profile/>}/>
-                                <Route path='/dialog' render={() => <DialogsContainer/>}/>
-                                <Route path='/users' render={() => <UsersContainer/>}/>
-                            </Switch>
+            <div className={'App'}>
+                {!this.props.isAuth &&
+                <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+                    <div className="container">
+                        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                            <ul className="navbar-nav ml-auto">
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/login"}>Login</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                :
-                <div className="app-wrapper">
+                </nav>
+                }
+                <div className={'app-wrapper'}>
                     <HeaderContainer/>
+                    {this.props.isAuth &&
                     <NavBar/>
+                    }
+
                     <div className="app-wrapper-content">
-                        <Route path='/profile/:userId?' render={() => <Profile/>}/>
-                        <Route path='/dialog' render={() => <DialogsContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <LoginContainer/>}/>
-                        <Route path="/sign-up" render={() => <SignUpContainer/>}/>
+                        <Switch>
+                            <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
+                            <Route path='/profile/:userId?' render={() => <Profile/>}/>
+                            <Route path='/dialog'
+                                   render={SuspenseLazyLoading(DialogsContainer)}/>
+                            <Route path='/users'
+                                   render={SuspenseLazyLoading(UsersContainer)}/>
+                            <Route path='/login' render={SuspenseLazyLoading(LoginContainer)}/>
+                            <Route path="/sign-up" render={SuspenseLazyLoading(SignUpContainer)}/>
+                            <Route path="*" render={() => <div> 404 Not Found</div>}/>
+                        </Switch>
                     </div>
                     <Footer/>
                 </div>
+            </div>
         );
     }
 }
@@ -84,4 +83,13 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized,
 });
 
-export default compose(withRouter, connect(mapStateToProps, {initializeAPP}))(App);
+let AppContainer = compose(withRouter, connect(mapStateToProps, {initializeAPP}))(App);
+
+const MainApp = (props) => (
+    <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer/>;
+        </Provider>
+    </BrowserRouter>);
+
+export default MainApp;

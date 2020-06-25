@@ -1,6 +1,6 @@
-import profileReducer from "./profile-reducer";
-import messagesReducer from "./messages-reducer";
-import sidebarReducer from "./users-reducer";
+import profileReducer from "./profile-reducer.ts";
+import messagesReducer from "./messages-reducer.ts";
+import sidebarReducer from "./users-reducer.ts";
 
 let userData = {
     name: 'Arsen',

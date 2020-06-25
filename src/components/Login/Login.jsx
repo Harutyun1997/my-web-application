@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {NavLink} from "react-router-dom";
+import {ReCaptcha} from 'react-recaptcha-google'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +35,45 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+// executed once the captcha has been verified
+// can be used to post forms, redirect, etc.
+
 export default function Login(props) {
+
+
+    let [captchaDemo, setcaptchaDemo] = useState(0);
+
+    const onLoadRecaptcha = () => {
+        if (captchaDemo) {
+            captchaDemo.reset();
+            captchaDemo.execute();
+        }
+    };
+
+    useEffect(() => {
+        if (captchaDemo) {
+            console.log("started, just a second...");
+            captchaDemo.reset();
+            captchaDemo.execute();
+        }
+    }, [captchaDemo]);
+
+    const verifyCallback = (recaptchaToken) => {
+        // Here you will get the final recaptchaToken!!!
+        console.log(recaptchaToken, "<= your recaptcha token")
+    };
+
+
+    const executeCaptcha = function () {
+        captchaDemo.execute('6Le3MKUZAAAAAKfIFRP5Z9Tie3504fC8bIOER2ZB', {action: 'submit'}).then(function (token) {
+            // Add your logic to submit to your backend server here.
+            console.log(token);
+        });
+
+    };
+
+
     const updateEmailText = (e) => {
         let text = e.target.value;
         props.updateEmailText(text);
@@ -116,7 +155,27 @@ export default function Login(props) {
                     </Grid>
                 </form>
             </div>
+            <div>
+                <form id="someForm" action="/search" method="get">
+                    <input type="text" name="query"/>
+                </form>
+                <button
+                    onClick={executeCaptcha}
+                >
+                    Submit
+                </button>
 
+                <ReCaptcha
+                    ref={(el) => {
+                        setcaptchaDemo(el);
+                    }}
+                    size="invisible"
+                    render="explicit"
+                    sitekey="6Le3MKUZAAAAAKfIFRP5Z9Tie3504fC8bIOER2ZB"
+                    onloadCallback={onLoadRecaptcha}
+                    verifyCallback={verifyCallback}
+                />
+            </div>
         </Container>
     );
 }

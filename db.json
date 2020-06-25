@@ -19,29 +19,31 @@
   "users": [
     {
       "id": 1,
-      "name": "Aram",
-      "email": "grigoryan.harutyun.a@gmail.com",
-      "password": "1234",
-      "age": 45,
+      "name": "Grigoryan Har",
+      "email": "harut.grigoryan",
+      "password": 1111,
+      "age": "23",
       "location": {
-        "country": "Armenia",
-        "city": "Yerevan"
+        "country": "Russian",
+        "city": "Moscow"
       },
-      "status": "I am very tired i want to sle  ep",
-      "src": "https://i.pinimg.com/564x/c3/12/36/c3123650da72ec2c60f7568d33c65ce5.jpg",
+      "status": "gad",
+      "src": "avu.jpg",
       "followed": {
         "1": true,
-        "2": false,
+        "2": true,
         "3": true,
         "4": true,
-        "5": false,
-        "6": true,
-        "7": true,
+        "5": true,
+        "6": false,
+        "7": false,
         "8": false,
-        "9": true,
-        "10": true,
-        "14": true,
-        "15": true
+        "9": false,
+        "10": false,
+        "14": false,
+        "15": false,
+        "16": false,
+        "17": false
       },
       "isAuth": true,
       "error": false
@@ -56,10 +58,11 @@
         "country": "Russia",
         "city": "Moscow"
       },
-      "status": "HArut",
+      "status": "AFf",
       "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFR748d7Dv1mrey9dMZ8JBoHduFtrJ5A5rEKviKi9cABIRe9WR",
       "followed": true,
-      "isAuth": true
+      "isAuth": true,
+      "error": false
     },
     {
       "id": 4,
@@ -177,21 +180,6 @@
       "lastName": "Григорян",
       "country": "Россия",
       "city": "Московская обл.",
-      "email": "fd",
-      "password": "gffgfg",
-      "age": "22",
-      "name": "Арутюн Григорян",
-      "location": {
-        "country": "Россия",
-        "city": "Московская обл."
-      },
-      "id": 14
-    },
-    {
-      "firstName": "Арутюн",
-      "lastName": "Григорян",
-      "country": "Россия",
-      "city": "Московская обл.",
       "age": "22",
       "email": "Arsen",
       "password": "1234",
@@ -211,6 +199,45 @@
         "14": true
       },
       "id": 15
+    },
+    {
+      "firstName": "Harutyun",
+      "lastName": "Grigoryan",
+      "country": "Россия",
+      "city": "Москва",
+      "email": "grigoryan.harutyun.a@gmail.com",
+      "age": "122",
+      "password": "fsafsffsfsf",
+      "sendInfoMail": true,
+      "name": "Harutyun Grigoryan",
+      "location": {
+        "country": "Россия",
+        "city": "Москва"
+      },
+      "status": "Tell us about yourself",
+      "src": "",
+      "followed": {},
+      "id": 16
+    },
+    {
+      "firstName": "Арутюн",
+      "country": "Россия",
+      "city": "Московская обл.",
+      "lastName": "Grigoryan",
+      "email": "grigoryan.harutyun.a@gmail.com",
+      "password": "55555",
+      "sendInfoMail": true,
+      "age": "21",
+      "name": "Арутюн Grigoryan",
+      "location": {
+        "country": "Россия",
+        "city": "Московская обл."
+      },
+      "status": "фыввввв",
+      "src": "",
+      "followed": {},
+      "id": 17,
+      "isAuth": true
     }
   ],
   "auth": {
