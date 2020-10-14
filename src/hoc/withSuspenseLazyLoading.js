@@ -4,7 +4,7 @@ import Preloader from "../components/common/Preloader/Preloader";
 
 export const SuspenseLazyLoading = (Component) => {
     return (props) => {
-        return <Suspense fallback={<Preloader/>}><Component title={'VK'} {...props} /></Suspense>
+        return <Suspense fallback={<Preloader/>}><Component title={'AS'} {...props} /></Suspense>
     }
 
 };

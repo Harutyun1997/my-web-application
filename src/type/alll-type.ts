@@ -9,10 +9,16 @@ export type AddressType = {
     country: string | null
 }
 
-export type FollowedType = {
-    id: number
-    followed: boolean
+
+export  type PhotoType = {
+    lastModified: number
+    lastModifiedDate: string
+    name: string
+    size: number
+    type: string
+    webkitRelativePath: string | null
 }
+
 export type  userDataType = {
     id: number
     name: string
@@ -22,7 +28,7 @@ export type  userDataType = {
     location: AddressType
     status: string
     src: string
-    followed: FollowedType[] | boolean
+    followed: Array<number>
     isAuth: boolean
     error: boolean | string
 }
